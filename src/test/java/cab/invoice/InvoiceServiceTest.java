@@ -28,6 +28,21 @@ public class InvoiceServiceTest {
 		double fare = invoiceGenerator.calculateFare("normal",distance,time);
 		assertEquals(5,fare,0.0);
 	}
+	@Test
+	public void givenLessDistanceAndTim_ShouldReturnMinimumFare() {
+		double distance = 0.1;
+		int time = 1;
+		double fare = invoiceGenerator.calculateFare("normal",distance,time);
+		assertEquals(5,fare,0.0);
+	}
+
+	@Test
+	public void givenLessDistanceAndTim_ShouldReturnMinimumFae() {
+		double distance = 0.1;
+		int time = 1;
+		double fare = invoiceGenerator.calculateFare("normal",distance,time);
+		assertEquals(5,fare,0.0);
+	}
 
 	@Test
 	public void givenMultipleRide_ShouldReturnInvoiceSummary() {
