@@ -89,6 +89,28 @@ public class InvoiceServiceTest {
 		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(3,110.0);
 		assertEquals(expectedInvoiceSummary,summary);
 	}
+	@Test
+	public void givenMultileRide_ShouldReturnInvoiceSummaryForPremiumRides() {
+		Ride[] user1rides = { new Ride(2.0,5),
+				new Ride(0.1,1),
+				new Ride(2,10)
+		};
+		Ride[] user2rides = { new Ride(3.0,5),
+				new Ride(0.1,2)
+		};
+		Ride[] user3rides = { new Ride(2.0,10),
+				new Ride(0.1,1)
+		};
+		Map<Integer,Ride[]> rideRepository = new HashMap<>();
+		rideRepository.put(101, user1rides);
+		rideRepository.put(102, user2rides);
+		rideRepository.put(103, user3rides);
+		int userID = 101;
+		String rideCategory = "premium";
+		InvoiceSummary summary = invoiceGenerator.calculateFare(rideCategory,rideRepository.get(userID));
+		InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(3,110.0);
+		assertEquals(expectedInvoiceSummary,summary);
+	}
 }
 
 
